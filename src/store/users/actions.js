@@ -1,10 +1,7 @@
 const actions = {
-  fetchMessages() {
+  getUsers() {
 
   },
-  sendMessages() {
-
-  }
 }
 
 export default actions

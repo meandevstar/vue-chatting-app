@@ -1,0 +1,32 @@
+[
+  {
+    "id": "1",
+    "user": "1",
+    "text": "Hi, How are you?",
+    "timestamp": 1585861563569
+  },
+  {
+    "id": "2",
+    "user": "2",
+    "text": "Fine, thanks. And you?",
+    "timestamp": 1585861563569
+  },
+  {
+    "id": "3",
+    "user": "1",
+    "text": "Good, Thank you",
+    "timestamp": 1585861563569
+  },
+  {
+    "id": "4",
+    "user": "2",
+    "text": "Let's start?",
+    "timestamp": 1585861563569
+  },
+  {
+    "id": "5",
+    "user": "3",
+    "text": "Hi, I am here.",
+    "timestamp": 1585861563569
+  }
+]

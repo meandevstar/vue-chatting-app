@@ -1,5 +1,5 @@
 const getters = {
-  messages(state) {
+  users(state) {
     return state.data
   },
   loading(state) {

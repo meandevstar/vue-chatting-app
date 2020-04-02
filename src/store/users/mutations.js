@@ -1,5 +1,5 @@
 const mutations = {
-  setMessages(state, payload) {
+  setUsers(state, payload) {
     state.data = payload
   }
 }
