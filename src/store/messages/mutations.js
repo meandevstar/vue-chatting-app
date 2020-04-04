@@ -1,6 +1,6 @@
 const mutations = {
-  setMessages(state, payload) {
-    state.data = payload
+  setMessage(state, payload) {
+    state.data = state.data.concat([payload])
   }
 }
 

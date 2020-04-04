@@ -16,7 +16,9 @@ html {
   overflow-y: hidden !important;
 }
 html,
-body {
+body,
+#app,
+#app-layout {
   height: 100%;
   overflow: hidden !important;
 }
@@ -25,5 +27,10 @@ body {
   background-color: white;
   background-size: cover;
   height: 100%;
+}
+#app {
+  font-family: "Roboto", "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

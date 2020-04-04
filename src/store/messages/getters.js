@@ -2,14 +2,16 @@ const getters = {
   messages(state, getters, rootState, rootGetters) {
     const users = rootGetters['users/users']
     return state.data.map(message => {
-      const user = users.find(v => v.id === message.user)
+      const sender = users.find(v => v.id === message.sender)
+    console.log('==> current users', users, sender)
 
       return {
         ...message,
-        user
+        sender
       }
     })
   },
+
   loading(state) {
     return state.loading
   }

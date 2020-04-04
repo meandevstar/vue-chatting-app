@@ -1,9 +1,11 @@
+import socket from '@/core/socket'
+
 const actions = {
   fetchMessages() {
 
   },
-  sendMessages() {
-
+  sendMessage(context, payload) {
+    socket.io.emit('messages', payload);
   }
 }
 

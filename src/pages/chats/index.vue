@@ -1,35 +1,70 @@
 <template>
-  <div class="chat-root">
-    <ul>
-      <li v-for="message in messages" :key="message.id">
-        {{`${message.user.name} sent message: "${message.text}"`}}
-      </li>
-    </ul>
+  <div :class="$style.root">
+    <div :class="$style.headerContainer">
+      <message-header @onNameChange="setName" />
+    </div>
+    <v-divider />
+    <div :class="$style.messageContainer">
+      <message v-for="message in messages" :key="message.id" :data="message" />
+    </div>
+    <v-divider />
+    <div :class="$style.inputContainer">
+      <message-input @submit="sendMessage" />
+    </div>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
+  import Message from '@/components/chats/Message'
+  import MessageInput from '@/components/chats/MessageInput'
+  import MessageHeader from '@/components/chats/MessageHeader'
 
   export default {
     name: 'ChatsPage',
 
     components: {
-
-    },
-
-    data () {
-      return  {
-
-      }
+      Message,
+      MessageInput,
+      MessageHeader
     },
 
     computed: {
-      ...mapGetters('messages', ['messages'])
+      ...mapGetters('messages', ['messages']),
+    },
+
+    methods: {
+      ...mapActions('messages', ['sendMessage']),
+      ...mapActions('users', ['setName'])
+    },
+
+    mounted() {
+      this.$store.dispatch('users/getUsers')
     }
   }
 </script>
 
-<style lang="scss">
-  
+<style lang="scss" module>
+  .root {
+    max-width: 768px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0;
+
+    .headerContainer {
+      width: 100%;
+    }
+
+    .messageContainer {
+      height: calc(100% - 100px);
+      padding: 40px 20px;
+    }
+
+    .inputContainer {
+      width: 100%;
+      height: 40px;
+    }
+  }
 </style>
