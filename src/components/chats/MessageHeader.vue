@@ -36,11 +36,12 @@
     },
 
     computed: {
-      ...mapState('users', ['me'])
+      ...mapState('auth', ['info'])
     },
 
     watch: {
-      me: function(val) {
+      info: function(val) {
+        console.log('==> ', val)
         this.name = val.name
       }
     },

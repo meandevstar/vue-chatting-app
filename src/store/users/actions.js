@@ -1,4 +1,4 @@
-import socket from '@/core/socket'
+import { io } from '@/core/socket'
 import { getUsers } from '@/core/api'
 
 const actions = {
@@ -14,7 +14,7 @@ const actions = {
     context.commit('setUsers', users)
   },
   setName(context, payload) {
-    socket.io.emit('users.name', payload)
+    io.emit('users.name', payload)
   }
 }
 

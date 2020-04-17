@@ -4,7 +4,7 @@ const mutations = {
   },
   setNewUser(state, payload) {
     state.data = state.data
-      .filter(user => user.id !== payload.id)
+      .filter(user => user._id !== payload._id)
       .concat([payload])
   }
 }

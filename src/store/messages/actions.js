@@ -1,11 +1,11 @@
-import socket from '@/core/socket'
+import { io } from '@/core/socket'
 
 const actions = {
   fetchMessages() {
 
   },
   sendMessage(context, payload) {
-    socket.io.emit('messages', payload);
+    io.emit('messages', payload);
   }
 }
 

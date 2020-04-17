@@ -1,29 +1,42 @@
 import SocketIO from 'socket.io-client'
 import store from '@/store'
 
-let io = SocketIO(process.env.VUE_APP_SOCKET_URL, {
+const defaultOptions = {
   transport: ['websocket'],
-  path: '/socket.io'
-})
+  path: '/socket.io',
+  query: {}
+}
+let io;
 
-io.on('connect', () => console.log('Socket connected'));
-io.on('disconnect', console.log('Socket disconnected'));
+const connect = (token) => {
+  defaultOptions.query.token = token
 
-io.on('messages.new', (data) => {
-  console.log('==> messages.new', data)
-  store.commit('messages/setMessage', data)
-})
+  if (io) {
+    io.disconnect()
+  }
 
-io.on('users', (data) => {
-  console.log('==> users', data)
-  store.commit('users/setUsers', data)
-})
+  io = SocketIO(process.env.VUE_APP_SOCKET_URL, defaultOptions)
 
-io.on('users.new', (data) => {
-  console.log('==> users.new', data)
-  store.commit('users/setNewUser', data)
-})
+  io.on('connect', () => console.log('Socket connected'));
+  io.on('disconnect', console.log('Socket disconnected'));
 
-export default {
-  io
+  io.on('messages.new', (data) => {
+    console.log('==> messages.new', data)
+    store.commit('messages/setMessage', data)
+  })
+
+  io.on('users', (data) => {
+    console.log('==> users', data)
+    store.commit('users/setUsers', data)
+  })
+
+  io.on('users.new', (data) => {
+    console.log('==> users.new', data)
+    store.commit('users/setNewUser', data)
+  })
+}
+
+export {
+  io,
+  connect
 }

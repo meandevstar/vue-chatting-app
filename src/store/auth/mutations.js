@@ -1,6 +1,6 @@
 const mutations = {
   setUserInfo(state, payload) {
-    state.data = payload
+    state.info = payload
     state.loading = false
   },
   setToken(state, payload) {

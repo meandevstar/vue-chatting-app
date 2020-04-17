@@ -8,24 +8,12 @@ import { LoginPage, SignupPage } from '@/pages/auth'
 
 Vue.use(Router)
 
-let entryUrl = null;
 const guard = async (to, from, next) => {
-  if (store.state.auth.token !== null) {
-    if (entryUrl) {
-      const url = entryUrl;
-      entryUrl = null;
-      return next(url);
-    } else {
-      return next();
-    }
-  }
-
-  await store.dispatch('auth/hydrate'); 
+  await store.dispatch('auth/hydrate');
 
   if (store.state.auth.token !== null) {
     next();
   } else {
-    entryUrl = to.path;
     next('/login');
   }
 };
