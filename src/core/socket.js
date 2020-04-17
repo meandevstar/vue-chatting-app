@@ -1,7 +1,7 @@
 import SocketIO from 'socket.io-client'
 import store from '@/store'
 
-let io = SocketIO('http://localhost:8001', {
+let io = SocketIO(process.env.VUE_APP_SOCKET_URL, {
   transport: ['websocket'],
   path: '/socket.io'
 })

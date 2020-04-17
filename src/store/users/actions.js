@@ -1,12 +1,12 @@
 import socket from '@/core/socket'
-import axios from 'axios'
+import { getUsers } from '@/core/api'
 
 const actions = {
   async getUsers(context) {
     let users;
 
     try {
-      users = await axios.get('http://localhost:8000/v1/users')
+      users = await getUsers()
     } catch (err) {
       users = []
     }
