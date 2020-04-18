@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.root">
+  <div v-if="data && data.sender" :class="$style.root">
     <div :class="`${$style.avatar} ${data.isMe ? $style.me : '' }`">
       {{data.sender.name.toUpperCase().substr(0, 2)}}
       <i :class="$style[data.sender.status.toLowerCase()]"/>
@@ -16,6 +16,10 @@
   export default {
     name: 'Message',
     props: ['data'],
+
+    mounted() {
+      console.log(this.data)
+    }
   }
 </script>
 

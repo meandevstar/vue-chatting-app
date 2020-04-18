@@ -17,3 +17,5 @@ export const setToken = (token) => {
 export const getUsers = () => api.get('users')
 export const login = (payload) => api.post('users/authenticate', payload)
 export const signup = (payload) => api.post('users/register', payload)
+
+export const getMessages = () => api.get('messages')

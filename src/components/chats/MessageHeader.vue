@@ -41,7 +41,6 @@
 
     watch: {
       info: function(val) {
-        console.log('==> ', val)
         this.name = val.name
       }
     },
@@ -50,7 +49,13 @@
       submit() {
         this.$emit('onNameChange', this.name)
       }
-    }
+    },
+
+    mounted() {
+      if (this.info) {
+        this.name = this.info.name
+      }
+    },
   }
 </script>
 

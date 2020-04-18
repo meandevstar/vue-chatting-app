@@ -43,6 +43,9 @@
                   Sign Up
                 </v-btn>
               </v-card-actions>
+              <div :class="$style.linkWrapper">
+                Don't have an account? <router-link to="/login">Log In</router-link>
+              </div>
             </v-form>
           </v-card>
         </v-container>
@@ -104,5 +107,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .linkWrapper {
+    display: flex;
+    justify-content: center;
   }
 </style>

@@ -1,4 +1,4 @@
-import { connect } from '@/core/socket'
+import { connect, disconnect } from '@/core/socket'
 import { login, signup, setToken } from '@/core/api'
 import router from '@/core/router'
 
@@ -39,8 +39,9 @@ const actions = {
     }
   },
 
-  hydrate(context) {
+  hydrate(context, payload, state) {
     try {
+      console.log(state)
       const info = localStorage.getItem('chatting-auth')
       const { token, user } = JSON.parse(info)
       setToken(token)
@@ -48,6 +49,14 @@ const actions = {
       context.commit('setUserInfo', user)
       context.commit('setToken', token)
     } catch (err) {}
+  },
+
+  logout(context) {
+    setToken(null)
+    disconnect()
+    localStorage.setItem('chatting-auth', null)
+
+    router.push('login')
   }
 }
 

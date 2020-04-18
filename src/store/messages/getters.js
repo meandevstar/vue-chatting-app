@@ -2,7 +2,15 @@ const getters = {
   messages(state, getters, rootState, rootGetters) {
     const users = rootGetters['users/users']
     return state.data.map(message => {
-      const sender = users.find(v => v._id === message.sender)
+      let sender = {};
+
+      if (users.length) {
+        sender = users.find(v =>
+          v._id === message.sender._id || message.sender
+        )
+      } else {
+        sender = message.sender;
+      }
 
       return {
         ...message,

@@ -9,11 +9,9 @@ const defaultOptions = {
 let io;
 
 const connect = (token) => {
-  defaultOptions.query.token = token
+  disconnect()
 
-  if (io) {
-    io.disconnect()
-  }
+  defaultOptions.query.token = token
 
   io = SocketIO(process.env.VUE_APP_SOCKET_URL, defaultOptions)
 
@@ -21,22 +19,29 @@ const connect = (token) => {
   io.on('disconnect', console.log('Socket disconnected'));
 
   io.on('messages.new', (data) => {
-    console.log('==> messages.new', data)
-    store.commit('messages/setMessage', data)
+    store.commit('messages/addMessage', data)
   })
 
   io.on('users', (data) => {
-    console.log('==> users', data)
     store.commit('users/setUsers', data)
   })
 
   io.on('users.new', (data) => {
-    console.log('==> users.new', data)
     store.commit('users/setNewUser', data)
   })
 }
 
+const disconnect = () => {
+  if (io) {
+    try {
+      io.disconnect()
+      io = null;  
+    } catch (err) {}
+  }
+}
+
 export {
   io,
-  connect
+  connect,
+  disconnect
 }

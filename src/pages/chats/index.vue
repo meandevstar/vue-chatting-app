@@ -1,11 +1,14 @@
 <template>
   <div :class="$style.root">
+    <div :class="$style.logoutWrapper">
+      <v-btn text large @click="logout">Sign Out</v-btn>
+    </div>
     <div :class="$style.headerContainer">
       <message-header @onNameChange="setName" />
     </div>
     <v-divider />
     <div :class="$style.messageContainer">
-      <message v-for="message in messages" :key="message.id" :data="message" />
+      <message v-for="message in messages" :key="message._id" :data="message" />
     </div>
     <v-divider />
     <div :class="$style.inputContainer">
@@ -35,11 +38,13 @@
 
     methods: {
       ...mapActions('messages', ['sendMessage']),
-      ...mapActions('users', ['setName'])
+      ...mapActions('users', ['setName']),
+      ...mapActions('auth', ['logout'])
     },
 
     mounted() {
       this.$store.dispatch('users/getUsers')
+      this.$store.dispatch('messages/getMessages')
     }
   }
 </script>
@@ -53,12 +58,16 @@
     position: relative;
     padding: 40px 0;
 
+    .logoutWrapper {
+      text-align: right;
+    }
+
     .headerContainer {
       width: 100%;
     }
 
     .messageContainer {
-      height: calc(100% - 100px);
+      height: calc(100% - 140px);
       padding: 40px 20px;
     }
 

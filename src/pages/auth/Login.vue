@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout align-center justify-center :class="$style.formWrapper">
+    <v-layout :class="$style.formWrapper">
       <v-flex class="grey lighten-4">
         <v-container class="text-xs-center">
           <v-card flat>
@@ -35,6 +35,9 @@
                   Login
                 </v-btn>
               </v-card-actions>
+              <div :class="$style.linkWrapper">
+                Don't have an account? &nbsp;&nbsp; <router-link to="/signup">Sign up</router-link>
+              </div>
             </v-form>
           </v-card>
         </v-container>
@@ -73,7 +76,7 @@
 
       submit(e) {
         e.preventDefault()
-        
+
         const payload = {
           email: this.email,
           password: this.password
@@ -91,5 +94,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .linkWrapper {
+    display: flex;
+    justify-content: center;
   }
 </style>
